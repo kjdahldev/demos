@@ -2,6 +2,7 @@ import * as React from 'react';
 import { graph } from "@pnp/graph/presets/all";
 import { MSGraphClient } from '@microsoft/sp-http';
 import { WebPartContext } from '@microsoft/sp-webpart-base';
+import { resultItem } from 'office-ui-fabric-react/lib/components/ExtendedPicker/PeoplePicker/ExtendedPeoplePicker.scss';
 
 export interface IDemoPostToTeamChannelProps {
     context: WebPartContext;    
@@ -59,7 +60,8 @@ class DemoGraphRepository {
                 }
             };
 
-            this._repository.postToChannel(this._unifiedGroupId, chatMsg, channel.id);
+            const result = await this._repository.postToChannel(this._unifiedGroupId, chatMsg, channel.id);
+            return result;
         }
     }
 }
